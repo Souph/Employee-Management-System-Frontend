@@ -1,0 +1,45 @@
+<div>
+  <form novalidate [formGroup]="form" (ngSubmit) = "findEmployee()" >
+    <label>FIND EMPLOYEE DETAILS</label>
+
+    <!--EMPLOYEE ID-->
+    <!--Mandatory Field-->
+    <!--should be only of numeric type and length should be exactly 7-->
+
+    <input type="text" formControlName="empId" placeholder="Employee Id">
+    <div *ngIf="form.get('empId').touched && form.get('empId').invalid" class = "alert">
+      <div *ngIf="form.get('empId').hasError('required')">
+          Employee Id Required!!
+      </div>
+      <div *ngIf="form.get('empId').hasError('pattern')">
+        Only numeric values accepted!!
+      </div>
+      <div *ngIf="form.get('empId').hasError('minlength')">
+        Employee Id cannot be less than 7 Characters!!
+      </div>
+      <div *ngIf="form.get('empId').hasError('maxlength')">
+        Employee Id cannot be greater than 7 Characters!!
+      </div>
+    </div>
+    <input type="submit" value="FIND EMPLOYEE" [disabled]="form.invalid" class = "btn btn-success">
+  </form>
+  </div>
+<br><br>
+  <table *ngIf="checkContent" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Employee ID</th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Employee Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{data.empId}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.salary}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  

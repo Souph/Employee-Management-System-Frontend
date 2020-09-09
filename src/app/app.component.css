@@ -1,0 +1,13 @@
+.heading
+{
+    padding : 25px;
+    background-color: darkgreen;
+}
+.heading-brand
+{
+    color : white;
+    text-align : center;
+}
+a:hover {
+    text-decoration: none;
+  }

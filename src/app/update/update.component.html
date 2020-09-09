@@ -1,0 +1,59 @@
+<div>
+  <form novalidate [formGroup]="form" (ngSubmit) = "updateEmployee()" >
+    <label>Update EMPLOYEE DETAILS</label>
+
+    <!--EMPLOYEE ID-->
+    <!--Mandatory Field-->
+    <!--should be only of numeric type and length should be exactly 7-->
+
+    <input type="text" formControlName="empId" placeholder="Employee Id">
+    <div *ngIf="form.get('empId').touched && form.get('empId').invalid" class = "alert">
+      <div *ngIf="form.get('empId').hasError('required')">
+          Employee Id Required!!
+      </div>
+      <div *ngIf="form.get('empId').hasError('pattern')">
+        Only numeric values accepted!!
+      </div>
+      <div *ngIf="form.get('empId').hasError('minlength')">
+        Employee Id cannot be less than 7 Characters!!
+      </div>
+      <div *ngIf="form.get('empId').hasError('maxlength')">
+        Employee Id cannot be greater than 7 Characters!!
+      </div>
+    </div>
+
+    <input type="button" value="FIND" [disabled]="form.get('empId').invalid" (click)="findEmployee()">
+  
+    <!--EMPLOYEE NAME-->
+    <!--Mandatory Field-->
+    <!--length should be greater than 1 character and should contain only alphabets-->
+
+    <input type="text" formControlName="name" placeholder="Employee Name">
+    <div *ngIf="form.get('name').touched && form.get('name').invalid" class = "alert" value = "{{data.name}}">
+      <div *ngIf="form.get('name').hasError('required')">
+          Employee Name Required!!
+      </div>
+      <div *ngIf="form.get('name').hasError('pattern')">
+        Invalid Employee Name!!
+    </div>
+    </div>
+    
+    <!--EMPLOYEE SALARY-->
+    <!--Mandatory Field-->
+    <!--should be only of numeric type-->
+
+    <input type="text" formControlName="salary" placeholder="Employee Salary">
+    <div *ngIf="form.get('salary').touched && form.get('salary').invalid" class = "alert" value = "{{data.salary}}">
+      <div *ngIf="form.get('salary').hasError('required')">
+          Employee Salary Required!!
+      </div>
+      <div *ngIf="form.get('salary').hasError('pattern')">
+        Invalid Salary!!
+    </div>
+    </div>
+    
+    <input type="submit" value="SAVE" [disabled]="form.invalid" class = "btn btn-success">
+  </form>
+</div>
+
+<div *ngIf="checkContent" class = "msg">{{userCount}} user(s) updated!!</div>
