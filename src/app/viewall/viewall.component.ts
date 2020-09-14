@@ -13,7 +13,7 @@ export class ViewallComponent implements OnInit {
   data=[];
   showAll()
   {
-    this.http.get('/view')
+    this.http.post('/view')
     .subscribe((data: any[]) => this.data = data);
     this.checkContent=true;
   }
